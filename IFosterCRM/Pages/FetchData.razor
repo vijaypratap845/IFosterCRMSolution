@@ -2,8 +2,10 @@
 
 <PageTitle>Weather forecast</PageTitle>
 
+@using IFoster.Models
 @using IFosterCRM.Data
 @inject WeatherForecastService ForecastService
+@inject UserService userService
 
 <h1>Weather forecast</h1>
 
@@ -40,7 +42,7 @@ else
 
 @code {
     private WeatherForecast[]? forecasts;
-
+    private UserProfileInformation userProfile;
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);

@@ -12,7 +12,7 @@ namespace IFoster.Repository.DAL.Context
         public DapperContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("DBConnectionString");
+            _connectionString = _configuration.GetConnectionString("IFosterDbConString");
         }
 
         public IDbConnection CreateConnection()
