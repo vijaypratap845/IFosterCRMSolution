@@ -4,7 +4,7 @@ namespace IFoster.Repository.Interfaces
 {
     public interface IUserRepo
     {
-        public Task<UserProfileInformation> GetUserIdByEmail(string Email);
+        public Task<UserProfileInformation> GetUserIdByName(string FirstName, string LastName);
 
     }
 }

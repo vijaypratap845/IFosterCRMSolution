@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IFoster.Repository\IFoster.Repository.csproj" />
     <ProjectReference Include="..\IFosterModels\IFoster.Models.csproj" />
   </ItemGroup>
 

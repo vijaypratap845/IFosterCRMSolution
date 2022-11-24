@@ -1,3 +1,7 @@
+using IFoster.Repository.DAL.Context;
+using IFoster.Repository.DAL.Logger;
+using IFoster.Repository.DAL.User;
+using IFoster.Repository.Interfaces;
 using IFosterCRM.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -10,6 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddTransient<ILogRepo, LogRepo>();
+builder.Services.AddTransient<IUserRepo, UserRepo>();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {

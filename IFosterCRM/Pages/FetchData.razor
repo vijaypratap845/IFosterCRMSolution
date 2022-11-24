@@ -3,9 +3,11 @@
 <PageTitle>Weather forecast</PageTitle>
 
 @using IFoster.Models
+@using IFoster.Repository.Interfaces
 @using IFosterCRM.Data
 @inject WeatherForecastService ForecastService
 @inject UserService userService
+@inject IUserRepo userRepo
 
 <h1>Weather forecast</h1>
 
@@ -17,7 +19,7 @@
 }
 else
 {
-    <table class="table">
+   @* <table class="table">
         <thead>
             <tr>
                 <th>Date</th>
@@ -37,14 +39,38 @@ else
                 </tr>
             }
         </tbody>
+    </table>*@
+     <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>@userProfile.Id</td>
+                    <td>@userProfile.FirstName</td>
+                    <td>@userProfile.LastName</td>
+                    <td>@userProfile.EmailId</td>
+                </tr>
+        </tbody>
     </table>
 }
 
 @code {
     private WeatherForecast[]? forecasts;
-    private UserProfileInformation userProfile;
+    private UserProfileInformation userProfile{ get; set; } = new UserProfileInformation();
+    string firstName = "Raj";
+    string lastName = "Kumar";
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+       userProfile = await userRepo.GetUserIdByName(firstName, lastName);
+      
     }
+   
 }
